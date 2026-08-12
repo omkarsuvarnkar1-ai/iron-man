@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/ui/Navbar";
+import MusicControl from "@/components/ui/MusicControl";
 import { Hero } from "@/components/sections/Hero";
 import { CinematicReveal } from "@/components/sections/CinematicReveal";
 import { SystemsNominal } from "@/components/sections/SystemsNominal";
@@ -14,6 +15,7 @@ export default function Home() {
         <SystemsNominal />
       </main>
       <Footer />
+      <MusicControl />
     </>
   );
 }
