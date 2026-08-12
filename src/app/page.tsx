@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/ui/Navbar";
 import MusicControl from "@/components/ui/MusicControl";
+import IntroVideo from "@/components/IntroVideo";
 import { Hero } from "@/components/sections/Hero";
 import { CinematicReveal } from "@/components/sections/CinematicReveal";
 import { SystemsNominal } from "@/components/sections/SystemsNominal";
