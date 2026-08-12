@@ -1,6 +1,4 @@
-
 "use client";
-
 import { useRef, useState } from "react";
 
 type IntroVideoProps = {
@@ -14,6 +12,15 @@ export default function IntroVideo({ onEnded }: IntroVideoProps) {
   const [fadeOut, setFadeOut] = useState(false);
 
   const finishIntro = () => {
+    const video = videoRef.current;
+
+    // STOP INTRO AUDIO/VIDEO COMPLETELY
+    if (video) {
+      video.pause();
+      video.currentTime = 0;
+      video.muted = true;
+    }
+
     setFadeOut(true);
 
     setTimeout(() => {
@@ -41,7 +48,7 @@ export default function IntroVideo({ onEnded }: IntroVideoProps) {
   return (
     <div
       className={`fixed inset-0 z-[99999] bg-black transition-opacity duration-800 ${
-        fadeOut ? "opacity-0" : "opacity-100"
+        fadeOut ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
     >
       <video
@@ -54,7 +61,7 @@ export default function IntroVideo({ onEnded }: IntroVideoProps) {
         className="h-full w-full object-cover"
       />
 
-      {/* Music ON / OFF */}
+      {/* MUSIC CONTROL */}
       <button
         onClick={toggleSound}
         className="absolute bottom-8 right-8 z-[100000]
@@ -70,7 +77,7 @@ export default function IntroVideo({ onEnded }: IntroVideoProps) {
         {isMuted ? "🔇 MUSIC OFF" : "🔊 MUSIC ON"}
       </button>
 
-      {/* Skip Intro */}
+      {/* SKIP */}
       <button
         onClick={finishIntro}
         className="absolute bottom-8 left-8 z-[100000]
@@ -85,9 +92,8 @@ export default function IntroVideo({ onEnded }: IntroVideoProps) {
         SKIP INTRO →
       </button>
 
-      {/* Stark status */}
       <div
-        className="absolute top-8 left-8 z-[100000]
+        className="absolute left-8 top-8 z-[100000]
         font-mono text-[10px]
         tracking-[0.3em]
         text-cyan-300/60"
